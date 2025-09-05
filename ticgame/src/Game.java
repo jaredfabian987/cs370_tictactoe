@@ -25,23 +25,26 @@ public class Game {
    }
 
    public void printBoard(){
-       for (int i = 0; i < BOARDSIZE; i ++){
-        cout << "-------------------------\n";
-        cout << "|";
-     
-        for (int  j = 0; j < 3; j++){
-            cout  << "\t" << board [i][j] << "\t|";
+
+        // outer foor loop for the rows
+        for (int i = 0; i < BOARDSIZE; i ++){
+            // print the top border of the board
+            System.out.println("-------------------------");
+            // print the left border of the board
+            System.out.print('|');
+            for (int j = 0; j < BOARDSIZE; j++){
+                // print the value in the board with some formatting
+                System.out.print("\t" + board[i][j] + "\t|");
+            }
+            // print a new line after each row
+            if (i < BOARDSIZE - 1){
+                System.out.println();
+            }
         }
-        if (i < BOARDSIZE-1){
-            cout << "\n";
-        }
-        
-        
-    }
-    
-    cout << "\n-------------------------\n";
-   }
-   
+        // print the bottom border of the board
+        System.out.println("\n-------------------------");
+}
+
    public void printSymbol (int col, int row, char val){
 
    }
