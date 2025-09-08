@@ -12,6 +12,13 @@ public class Game {
    public boolean firstPlayer; // if player turn is first
    public boolean gameOver; // if game is over
 
+   // need a constructor for this class
+   public Game(){
+    // need to initialize a new instance of thie board and make it empty
+    // need to set first player to true
+    // need to set game over to false
+   }
+
    public void play(){} // to be called in main
 
    public void printStatus (int player){
@@ -52,7 +59,7 @@ public class Game {
    public boolean validMove(int col, int row){
     // we need to check if the col and row entered by the user is within 1-3
     if (col >=1 && col <= BOARDSIZE && row >=1 && row <= BOARDSIZE ){
-        if (board[row-1][col-1] == ' '){
+        if (board[row-1][col-1] == ' '){ // note that -1 is for the index since it starts at 0
             return true;
         }
     }
