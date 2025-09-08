@@ -14,9 +14,18 @@ public class Game {
 
    // need a constructor for this class
    public Game(){
-    // need to initialize a new instance of thie board and make it empty
-    // need to set first player to true
-    // need to set game over to false
+ 
+    board = new char [BOARDSIZE][BOARDSIZE]; // create a new board
+    firstPlayer = true; // first player starts the game
+    gameOver = false; // game is not over at the start
+
+    // initialize the board with empty spaces
+    for (int row = 0; row < BOARDSIZE; row++){
+        for (int col = 0; col < BOARDSIZE; col++){
+            board[row][col] = ' '; // empty space
+        }
+    }
+    
    }
 
    public void play(){} // to be called in main
@@ -27,24 +36,24 @@ public class Game {
    }
 
    public Status gameStatus (){
-    return Status.CONTINUE;
+    return Status.CONTINUE; // defualt
 
    }
 
    public void printBoard(){
 
         // outer foor loop for the rows
-        for (int i = 0; i < BOARDSIZE; i ++){
+        for (int row = 0; row < BOARDSIZE; i ++){
             // print the top border of the board
             System.out.println("-------------------------");
             // print the left border of the board
             System.out.print('|');
-            for (int j = 0; j < BOARDSIZE; j++){
+            for (int col = 0; col < BOARDSIZE; col ++){
                 // print the value in the board with some formatting
-                System.out.print("\t" + board[i][j] + "\t|");
+                System.out.print("\t" + board[row][col] + "\t|");
             }
             // print a new line after each row
-            if (i < BOARDSIZE - 1){
+            if (row < BOARDSIZE - 1){
                 System.out.println();
             }
         }
@@ -52,8 +61,10 @@ public class Game {
         System.out.println("\n-------------------------");
 }
 
-   public void printSymbol (int col, int row, char val){
-
+   public void placeSymbol (int col, int row, char val){
+    if (validMove(col,row)){// check if the move is valid
+        board [row-1][col-1]= val; // place that value 
+    }
    }
 
    public boolean validMove(int col, int row){
