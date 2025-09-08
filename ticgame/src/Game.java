@@ -50,8 +50,14 @@ public class Game {
    }
 
    public boolean validMove(int col, int row){
-
-
+    // we need to check if the col and row entered by the user is within 1-3
+    if (col >=1 && col <= BOARDSIZE && row >=1 && row <= BOARDSIZE ){
+        if (board[row-1][col-1] == ' '){
+            return true;
+        }
+    }
+    // will deefault if the contions are not met
+    System.out.println("Invalid move, please try again");
     return false;
    }
 
