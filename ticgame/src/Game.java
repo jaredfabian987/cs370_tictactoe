@@ -35,9 +35,49 @@ public class Game {
 
    }
 
-   public Status gameStatus (){
-    return Status.CONTINUE; // defualt
 
+   public Status gameStatus (){
+    // need to check for win, draw or continue
+
+    // check the rows for a win using a loop
+    for (int row = 0; row < BOARDSIZE; row++){
+        if (board[row][0] != ' ' && board[row][0] == board[row][1] && board [row][1] == board[row][2]){
+            return Status.WIN;
+        }
+    }
+
+    // check the columns for a win using a loop
+    for (int col = 0; col < BOARDSIZE; col ++){
+        if (board[0][col] != ' ' && board [0][col] == board[1][col] && board [1][col] == board [2][col]){
+            return Status.WIN;
+        }
+    }
+
+    // check the diagonals for a win
+    if (board[0][0] != ' ' && board [0][0] == board [1][1] && board [1][1] == board [2][2]){
+        return Status.WIN;
+    }
+    if (board[0][2] != ' ' && board [0][2] == board [1][1] && board [1][1] == board [2][0]){
+        return Status.WIN;
+    }
+
+    // need to check for a draw (full board)
+    boolean full = true; // assume the board is full;
+    for (int row = 0; row < BOARDSIZE; row ++){
+        for (int col = 0; col < BOARDSIZE; col ++){
+            if (board[row][col] == ' ') {
+                full = false; // found an empty space
+                break;
+            }
+        }
+    }
+    if (full){
+        return Status.DRAW;
+    }
+
+
+    // if none of the conditions above are met, the game will continue
+    return Status.CONTINUE; // defualt
    }
 
    public void printBoard(){
