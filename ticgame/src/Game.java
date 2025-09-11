@@ -10,7 +10,9 @@ public class Game {
    public char[][] board; // initialize a 2d array
 
    public boolean firstPlayer; // if player turn is first
+
    public boolean gameOver; // if game is over
+
 
    // need a constructor for this class
    public Game(){
@@ -28,10 +30,14 @@ public class Game {
     
    }
 
-   public void play(){} // to be called in main
+
+   public void play(){
+
+   } // to be called in main
+
 
    public void printStatus (int player){
-
+    System.out.println(player == 1 ? "Player X's turn" : "Player O's turn");
 
    }
 
@@ -60,30 +66,28 @@ public class Game {
     if (board[0][2] != ' ' && board [0][2] == board [1][1] && board [1][1] == board [2][0]){
         return Status.WIN;
     }
-
-    // need to check for a draw (full board)
-    boolean full = true; // assume the board is full;
-    for (int row = 0; row < BOARDSIZE; row ++){
-        for (int col = 0; col < BOARDSIZE; col ++){
-            if (board[row][col] == ' ') {
-                full = false; // found an empty space
-                break;
+    
+    // any empty space?
+    for (int row = 0; row < BOARDSIZE; row++){
+        for (int col = 0; col < BOARDSIZE; col++){
+            if (board[row][col] == ' '){
+                return Status.CONTINUE; // if there is an empty space, the game will continue
             }
         }
-    }
-    if (full){
-        return Status.DRAW;
-    }
 
+    // if no empty spaces, then it is a draw
+    return Status.DRAW;// this will be the new default
+    }
 
     // if none of the conditions above are met, the game will continue
     return Status.CONTINUE; // defualt
    }
 
+
    public void printBoard(){
 
         // outer foor loop for the rows
-        for (int row = 0; row < BOARDSIZE; i ++){
+        for (int row = 0; row < BOARDSIZE; row ++){
             // print the top border of the board
             System.out.println("-------------------------");
             // print the left border of the board
@@ -101,11 +105,13 @@ public class Game {
         System.out.println("\n-------------------------");
 }
 
+
    public void placeSymbol (int col, int row, char val){
     if (validMove(col,row)){// check if the move is valid
         board [row-1][col-1]= val; // place that value 
     }
    }
+
 
    public boolean validMove(int col, int row){
     // we need to check if the col and row entered by the user is within 1-3
@@ -119,6 +125,6 @@ public class Game {
     return false;
    }
 
-
+   
  }
 
