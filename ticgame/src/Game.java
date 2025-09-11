@@ -75,12 +75,10 @@ public class Game {
             }
         }
 
+    
+    }
     // if no empty spaces, then it is a draw
     return Status.DRAW;// this will be the new default
-    }
-
-    // if none of the conditions above are met, the game will continue
-    return Status.CONTINUE; // defualt
    }
 
 
